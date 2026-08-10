@@ -5,6 +5,7 @@ package com.example.demo.controller;
 //import java.util.Arrays;
 import java.util.List;
 
+
 import com.example.demo.model.Student;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.service.StudentService;
 
+import jakarta.validation.Valid;
 
 @RestController
 public class HelloController {
@@ -50,8 +52,14 @@ public class HelloController {
 //        return student;
 //    }
     
+//    @PostMapping("/students")
+//    public Student addStudent(@RequestBody Student student) {
+//        return studentService.addStudent(student);
+//    }
+    
+    
     @PostMapping("/students")
-    public Student addStudent(@RequestBody Student student) {
+    public Student addStudent(@Valid @RequestBody Student student) {
         return studentService.addStudent(student);
     }
     
@@ -93,8 +101,14 @@ public class HelloController {
 //        return null;
 //    }
     
+//    @PutMapping("/students/{id}")
+//    public Student updateStudent(@PathVariable int id, @RequestBody Student updatedStudent) {
+//        return studentService.updateStudent(id, updatedStudent);
+//    }
+    
     @PutMapping("/students/{id}")
-    public Student updateStudent(@PathVariable int id, @RequestBody Student updatedStudent) {
+    public Student updateStudent(@PathVariable int id,
+                                 @Valid @RequestBody Student updatedStudent) {
         return studentService.updateStudent(id, updatedStudent);
     }
     

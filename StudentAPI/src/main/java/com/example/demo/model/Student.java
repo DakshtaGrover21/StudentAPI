@@ -5,6 +5,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+
 
 @Entity
 public class Student {
@@ -16,8 +20,19 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-    private String name;
-    private int marks;
+//    private String name;
+	
+	@NotBlank(message = "Student name cannot be empty")
+	private String name;
+	
+	
+//    private int marks;
+	
+	@Min(value = 0, message = "Marks cannot be less than 0")
+	@Max(value = 100, message = "Marks cannot be greater than 100")
+	private int marks;
+	
+	
 
     public Student() {
     }
